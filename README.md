@@ -2,7 +2,7 @@
 A small money diary used in the terminal. 
 
 ## Setup
-Requirements: Python 3.12+ and [uv](https://docs.astral.sh/uv/).
+Requires-python = ">=3.12" and [uv](https://docs.astral.sh/uv/).
 ```bash
 cd budget-manager
 uv sync
@@ -84,12 +84,13 @@ Note: this replaces `data/transactions.csv`; don't run it if you have real data 
 
 | Row | Problem | Expected |
 | --- | --- | --- |
-| 2–4 | valid | loaded |
+| 2–4, 10 | valid (row 10 has spaces and a capital) | loaded |
 | 5 | negative amount | `warning: Row 5: amount must be >0, got -10.0`|
 | 6 | date not in ISO format | `warning: Row 6: date must be in ISO format, got 04/09/2026`|
 | 7 | unknown category | `warning: Row 7: category must be one of: ['food', 'medicines', 'rent', 'salary', 'transport'], got pizza` |
 | 8 | missing amount | `warning: Row 8: missing amount`|
 | 9 | duplicate id | `warning: Row 9: duplicate T3` |
+| 11 | currency not 3 letters | `warning: Row 11: currency must be a 3 letter code, got EURO` |
 
 ## Tests
 ```bash
@@ -97,16 +98,13 @@ uv run pytest -v
 ```
 Output:
 ```text
-collected 6 items                                                                                                        
+collected 3 items                                                                                                        
 
-tests/test_budget.py::test_balance_of_one_income_two_expenses PASSED                                               [ 16%]
-tests/test_budget.py::test_zero_amount_is_rejected PASSED                                                          [ 33%]
-tests/test_budget.py::test_unknown_category_is_rejected PASSED                                                     [ 50%]
-tests/test_budget.py::test_invalid_date_is_rejected PASSED                                                         [ 66%]
-tests/test_budget.py::test_broken_row_is_reported_and_good_rows_load PASSED                                        [ 83%]
-tests/test_budget.py::test_save_then_load_gives_same_transactions PASSED                                           [100%]
+tests/test_budget.py::test_balance_of_one_income_two_expenses PASSED                                               [ 33%]
+tests/test_budget.py::test_zero_amount_is_rejected PASSED                                                          [ 66%]
+tests/test_budget.py::test_broken_row_is_reported_and_good_rows_load PASSED                                        [100%]
 
-=================================================== 6 passed in 0.02s ====================================================
+=================================================== 3 passed in 0.02s ====================================================
 ´´´
 
 ## Known limitations
