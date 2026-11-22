@@ -28,7 +28,7 @@ def parse_kind(text: str) -> str:
     Raises ValueError: if kind not in VALID_KINDS"""
     kind= text.strip().lower()
     if kind not in VALID_KINDS:
-        raise ValueError (f"kind must be one of: sorted{VALID_KINDS}, got {text}")
+        raise ValueError(f"kind must be one of: {sorted(VALID_KINDS)}, got {text}")
     return kind
 
 def parse_category(text:str)->str:
@@ -36,7 +36,7 @@ def parse_category(text:str)->str:
     Raises ValueError: if category not in VALID_CATEGORIES"""
     category= text.strip().lower()
     if category not in VALID_CATEGORIES:
-        raise ValueError (f"category must be one of: sorted{VALID_CATEGORIES}, got {text}")
+        raise ValueError(f"category must be one of: {sorted(VALID_CATEGORIES)}, got {text}")    
     return category
         
 def validate_row(row:dict, line:int, seen_ids: set[str])-> list[str]:
