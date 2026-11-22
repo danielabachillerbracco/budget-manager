@@ -5,7 +5,7 @@ I used Claude (Anthropic) as a tutor and assistant during this practice.
 ## How I used it
 
 - **Structuring the exercise:** Claude helped me plan the project: the folder structure, which file has which responsibility, and the order to build it in (model, validation, services, storage, CLI, tests). It prepared a step-by-step guide based on my lecture slides, with explanations and examples from a different program, which I then applied to my budget manager.
--**Reviewing my code:** I wrote `models.py`, `validation.py`, `services.py` and `storage.py` myself. Claude reviewed each version, explained my errors (syntax, indentation, logic) and why they happened, and I corrected them. A boundary test it suggested (spaces and capital letters in the CSV) found a real bug.
+- **Reviewing my code:** I wrote `models.py`, `validation.py`, `services.py` and `storage.py` myself. Claude reviewed each version, explained my errors (syntax, indentation, logic) and why they happened, and I corrected them. A boundary test it suggested (spaces and capital letters in the CSV) found a real bug.
 - **The CLI:** Claude helped me a lot with `cli.py`. It wrote the interactive menu using my own functions, and then simplified it to match what we saw in class (Session 02: `while True`, `input()`, `try/except`). I tested it and made sure I understand each part.
 - **Tests:** I wrote the first versions of the tests. Claude corrected the normal test and the zero-amount test, and wrote the broken CSV row test. All three pass.
 - **Documentation:** we wrote `README.md` and `DESIGN.md` together. Claude suggested the structure and drafts, and I filled in my real outputs, checked them against my program and adapted the text.
