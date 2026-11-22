@@ -105,8 +105,7 @@ tests/test_budget.py::test_zero_amount_is_rejected PASSED                       
 tests/test_budget.py::test_broken_row_is_reported_and_good_rows_load PASSED                                        [100%]
 
 =================================================== 3 passed in 0.02s ====================================================
-´´´
-
+```
 ## Known limitations
 - One wrong answer while adding cancels that transaction; the user starts again from the menu (no retries).
 - Categories are a fixed list: rent, food, transport, salary, medicines.
