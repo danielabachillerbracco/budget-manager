@@ -8,7 +8,11 @@ from budget_manager.validation import parse_amount, parse_category, parse_date, 
 
 def add_transaction(budget: Budget) -> None:
     """Ask the user for a new transaction and add it to the budget."""
-    new_id = f"T{len(budget.all()) + 1}"
+    used_ids = {t.id for t in budget.all()}
+    number = len(used_ids) + 1
+    while f"T{number}" in used_ids:
+        number += 1
+    new_id = f"T{number}"
     try:
         date = parse_date(input("Date (YYYY-MM-DD): "))
         kind = parse_kind(input("Kind (expense/income): "))

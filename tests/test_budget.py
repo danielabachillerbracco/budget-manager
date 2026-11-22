@@ -22,7 +22,7 @@ def test_zero_amount_is_rejected():
         
 #Boundary: unknown category is rejected 
 def test_unknown_category_is_rejected():
-    with pytest.raises(ValueError, match="category not allowed"):
+    with pytest.raises(ValueError, match="category must be one of"):
         Transaction("T100", datetime.date(2026, 2, 1), "expense", "hospital", 10)
         
 #Boundary: an date that is not YYYY-MM-DD is rejected

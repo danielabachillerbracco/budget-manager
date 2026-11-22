@@ -10,9 +10,9 @@ class Transaction:
         if not id:
             raise ValueError ("id must not be empty")
         if kind not in VALID_KINDS:
-            raise ValueError(f"unknown kind, use one of {VALID_KINDS}")
+            raise ValueError(f"kind must be one of: {sorted(VALID_KINDS)}, got {kind}")
         if category not in VALID_CATEGORIES:
-            raise ValueError (f"category not allowed, use one of {VALID_CATEGORIES}")
+            raise ValueError(f"category must be one of: {sorted(VALID_CATEGORIES)}, got {category}")
         if amount<=0:
             raise ValueError (f"amount must be >0, got {amount}")
         if len(currency)!=3:
@@ -27,7 +27,8 @@ class Transaction:
         self.currency=currency
         
     @property 
-    def signed_amount(self):
+    def signed_amount(self)-> float:
+        """Return the amount with a sign: negative for expenses, positive for income."""
         if self.kind=="expense":
             return -self.amount
         else:
@@ -37,13 +38,13 @@ class Transaction:
     def from_dict(cls, row:dict)->"Transaction":
         """Build a Transaction from a CSV row, where every value is text"""
         return cls(
-            row["id"],
-            datetime.date.fromisoformat(row["date"]),
-            row["kind"],
-            row["category"],
-                float (row["amount"]),
-            row["currency"]
-            )
+            row["id"].strip(),
+            datetime.date.fromisoformat(row["date"].strip()),
+            row["kind"].strip().lower(),
+            row["category"].strip().lower(),
+            float(row["amount"].strip()),
+            row["currency"].strip().upper(),
+        )
         
     def to_dict(self)->dict:
         """Return a transaction as a plain dict, ready to save"""

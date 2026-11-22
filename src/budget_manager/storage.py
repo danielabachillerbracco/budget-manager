@@ -22,7 +22,12 @@ def load(path: Path) -> tuple [list[Transaction], list[str]]:
             if row_errors:
                 errors.extend(row_errors)
                 continue
-            transactions.append(Transaction.from_dict(row))
+            try:
+                transaction = Transaction.from_dict(row)
+            except ValueError as e:
+                errors.append(f"Row {line}: {e}")
+                continue
+            transactions.append(transaction)
             seen_ids.add(row["id"].strip())
     return transactions, errors
 
