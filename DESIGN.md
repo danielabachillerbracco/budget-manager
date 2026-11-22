@@ -1,0 +1,5 @@
+# Design rationale
+
+## Separating validation, logic, storage and the menu
+
+I split the program into layers, each in its own file: `cli.py` only talks to the user, `validation.py` checks every input where it enters the program (the menu and the CSV file), `models.py` defines a valid transaction, `services.py` does the calculations, and `storage.py` reads and writes the file. I chose this because each rule then lives in one place, and the calculations can be tested with a single `assert`, without typing into the menu or touching any file. For example, the balance test creates three transactions and checks the result directly. The trade-off is that the project has more files than a single script would need, and adding a new field (such as a note) means changing several files: the model, the validation, the CSV columns and the menu.
