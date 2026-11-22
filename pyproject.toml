@@ -1,7 +1,7 @@
 [project]
 name = "budget-manager"
 version = "0.1.0"
-description = "Add your description here"
+description = "A terminal budget manager with validated CSV storage"
 readme = "README.md"
 authors = [
     { name = "danielabachillerbracco", email = "daniela.s.work.001@gmail.com" }
